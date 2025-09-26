@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Civilizaciones - Mitología Mexicana</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Quattrocento:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+    <header class="app-header">
+        <h1>Mitología Mexicana</h1>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="civilizaciones.html">Civilizaciones</a>
+            <a href="dioses.html">Dioses</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="civilizaciones-codice">
+            <h2>Explora las Civilizaciones</h2>
+            <p>Haz clic en cada civilización para conocer su historia y cultura.</p>
+
+            <div class="decorative-border"></div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <img src="imagenes/olmecas.jpg" alt="Olmecas">
+                    <div class="card-body">
+                        <h3>Olmecas</h3>
+                        <button class="btn-toggle-info"><i class="fa-solid fa-chevron-down"></i> Información</button>
+                        <div class="card-info">
+                            <p><strong>Periodo:</strong> 1500 a.C. - 400 a.C.</p>
+                            <p><strong>Región:</strong> Veracruz y Tabasco</p>
+                            <p><strong>Capital:</strong> San Lorenzo / La Venta</p>
+                            <p><strong>Lengua:</strong> Mixe-zoque</p>
+                            <p><strong>Descripción:</strong> Considerados la cultura madre de Mesoamérica, famosos por sus cabezas colosales y avanzada organización social.</p>
+                            <a href="dioses.html?civilizacion=olmecas" class="btn-dioses">Ver dioses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="imagenes/mayas.jpg" alt="Mayas">
+                    <div class="card-body">
+                        <h3>Mayas</h3>
+                        <button class="btn-toggle-info"><i class="fa-solid fa-chevron-down"></i> Información</button>
+                        <div class="card-info">
+                            <p><strong>Periodo:</strong> 2000 a.C. - 1500 d.C.</p>
+                            <p><strong>Región:</strong> Yucatán, Chiapas, Guatemala, Belice, Honduras</p>
+                            <p><strong>Capital:</strong> Tikal / Palenque</p>
+                            <p><strong>Lengua:</strong> Maya</p>
+                            <p><strong>Descripción:</strong> Destacados por su astronomía, escritura jeroglífica y arquitectura monumental.</p>
+                            <a href="dioses.html?civilizacion=mayas" class="btn-dioses">Ver dioses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="imagenes/mexicas.jpg" alt="Mexicas">
+                    <div class="card-body">
+                        <h3>Mexicas</h3>
+                        <button class="btn-toggle-info"><i class="fa-solid fa-chevron-down"></i> Información</button>
+                        <div class="card-info">
+                            <p><strong>Periodo:</strong> 1300 - 1521 d.C.</p>
+                            <p><strong>Región:</strong> Valle de México</p>
+                            <p><strong>Capital:</strong> Tenochtitlán</p>
+                            <p><strong>Lengua:</strong> Náhuatl</p>
+                            <p><strong>Descripción:</strong> Fundadores de Tenochtitlán, con un complejo panteón de dioses y guerreros.</p>
+                            <a href="dioses.html?civilizacion=mexicas" class="btn-dioses">Ver dioses</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Más cards según la base de datos -->
+            </div>
+
+            <div class="decorative-border"></div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.btn-toggle-info');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const icon = btn.querySelector('i');
+                    const info = btn.nextElementSibling;
+
+                    if (info.style.display === 'block') {
+                        info.style.display = 'none';
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    } else {
+                        info.style.display = 'block';
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

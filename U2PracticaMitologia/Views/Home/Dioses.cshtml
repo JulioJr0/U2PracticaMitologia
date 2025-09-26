@@ -1,0 +1,111 @@
+﻿@model U2PracticaMitologia.Models.ViewModels.DiosesViewModel
+@{
+    Layout = "Layout";
+}
+<main>
+    <section class="dioses-codice">
+        <h2>Panteón de Dioses</h2>
+
+        <div class="civilizacion-links">
+            <p>Selecciona una civilización para explorar sus deidades:</p>
+            <div class="links-container">
+                <!--Lista de los Dioses-->
+                @foreach(var listaCivilizaciones in Model.CivilizacionesMostrar)
+                {
+                    if (Model.NombreSeleccionado == listaCivilizaciones)
+                    {
+                        <a href="~/Home/Dioses/@listaCivilizaciones" class="civilizacion-link active">@listaCivilizaciones</a>
+                    }else
+                    {
+                        <a href="~/Home/Dioses/@listaCivilizaciones" class="civilizacion-link">@listaCivilizaciones</a>
+                    }
+                }
+                @*<a href="dioses.html?civilizacion=mayas" class="civilizacion-link">Mayas</a>
+                <a href="dioses.html?civilizacion=olmecas" class="civilizacion-link">Olmecas</a> *@
+            </div>
+        </div>
+
+        <div class="decorative-border"></div>
+
+        <div class="dioses-gallery">
+            <!--Lista de los Dioses con imagenes GALERIA-->
+            @foreach (var dios in Model.ListaDioses)
+            {
+                <div class="dios-item" data-dios-id="@dios.Id">
+                    <div class="dios-mini">
+                        <img src="~/imagenes/@(dios.Nombre)_estatua.png" alt="@dios.Nombre">
+                        <span>@dios.NombreLocal</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="detalles-container">
+            <div class="ningun-dios">
+                <p>Selecciona una civilización y haz clic en un dios para ver sus detalles</p>
+            </div>
+            <!--Descripcion del dios seleccionado-->
+            @foreach (var dios in Model.ListaDioses)
+            {
+                <div class="dios-detalles" data-dios-id="@dios.Id">
+                    <div class="detalles-superior">
+                        <img src="~/imagenes/@(dios.Nombre).png" alt="@dios.Nombre" class="dios-imagen-grande">
+                        <div class="dios-info">
+                            <h3>@dios.NombreLocal</h3>
+                            <p><strong>Civilización:</strong>@dios.Civilizacion</p>
+                            <p><strong>Género:</strong>@dios.Genero</p>
+                            <p><strong>Dominio:</strong>@dios.Dominio</p>
+@*                             <p><strong>Representación:</strong> Serpiente emplumada</p>
+ *@                        </div>
+                    </div>
+                    <div class="detalles-inferior">
+                        <div class="dios-descripcion">
+                            <p>@dios.Descripcion</p>
+                        </div>
+                    </div>
+                </div>
+            }
+           
+        </div>
+
+        <div class="decorative-border"></div>
+    </section>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const detallesContainer = document.querySelector('.detalles-container');
+        const diosesGallery = document.querySelector('.dioses-gallery');
+        const ningunDios = document.querySelector('.ningun-dios');
+        const detallesDioses = document.querySelectorAll('.dios-detalles');
+
+        function inicializarDetalles() {
+            detallesDioses.forEach(detalle => {
+                detalle.style.display = 'none';
+            });
+            ningunDios.style.display = 'block';
+        }
+
+        inicializarDetalles();
+
+        diosesGallery.addEventListener('click', function (e) {
+            const diosItem = e.target.closest('.dios-item');
+
+            if (diosItem) {
+                const diosId = diosItem.getAttribute('data-dios-id');
+
+                detallesDioses.forEach(detalle => {
+                    detalle.style.display = 'none';
+                });
+                ningunDios.style.display = 'none';
+
+                const detalles = document.querySelector(`.dios-detalles[data-dios-id="${diosId}"]`);
+                if (detalles) {
+                    detalles.style.display = 'block';
+                }
+            }
+        });
+
+
+    });
+</script>
